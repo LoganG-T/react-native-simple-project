@@ -14,7 +14,7 @@ export default function RootLayout() {
     const colorScheme = useColorScheme();
 
     const queryClient = new QueryClient({
-        defaultOptions: {queries: {retry: 2}},
+        defaultOptions: {queries: {retry: 1}},
     });
 
     return (

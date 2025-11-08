@@ -7,14 +7,15 @@ import {ThemedText} from '@/components/themed-text';
 import {ThemedView} from '@/components/themed-view';
 import {Link} from 'expo-router';
 import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
+import {axiosClient} from '@/constants/axiosClient';
 
 export default function HomeScreen() {
     const exampleQuery = useQuery({
         queryKey: ["example"], queryFn: async _ => {
-            const axiosClient = axios.create({});
 
-            const result = await axiosClient.get("https://jsonplaceholder.typicode.com/todos/1", {});
+            console.log("SENT---")
+            const result = await axiosClient().get("https://jsonplaceholder.typicode.com/todos/1", {});
+            console.log("DONE " + JSON.stringify(result.data))
             await new Promise(res => setTimeout(() => res(true), 1500));
             return result.data;
         }
@@ -34,7 +35,8 @@ export default function HomeScreen() {
                 <HelloWave/>
             </ThemedView>
             <Button onPress={() => {
-            }} title={exampleQuery.isLoading ? "Loading" : JSON.stringify(exampleQuery.data)}/>
+            }}
+                    title={exampleQuery.isLoading ? "Loading" : exampleQuery?.data ? JSON.stringify(exampleQuery.data) : "No data"}/>
             <ThemedView style={styles.stepContainer}>
                 <ThemedText type="subtitle">Step 1: Try it</ThemedText>
                 <ThemedText>
