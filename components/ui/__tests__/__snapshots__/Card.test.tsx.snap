@@ -7,3 +7,11 @@ exports[`Component:  Should match snapshot styles 1`] = `
   </Text>
 </View>
 `;
+
+exports[`Component: Card Should match snapshot styles 1`] = `
+<View>
+  <Text>
+    Text
+  </Text>
+</View>
+`;
