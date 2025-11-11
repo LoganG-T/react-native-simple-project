@@ -1,32 +1,53 @@
 import {Image} from 'expo-image';
-import {Button, Platform, StyleSheet} from 'react-native';
+import {Button, StyleSheet, Text} from 'react-native';
 
 import {HelloWave} from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import {ThemedText} from '@/components/themed-text';
 import {ThemedView} from '@/components/themed-view';
-import {Link} from 'expo-router';
 import {useQuery} from "@tanstack/react-query";
 import {axiosClient} from '@/constants/axiosClient';
+import {UserCard} from "@/components/ui/UserCard";
 
 export default function HomeScreen() {
     const exampleQuery = useQuery({
         queryKey: ["example"], queryFn: async _ => {
 
-            console.log("SENT---")
-            const result = await axiosClient().get("https://jsonplaceholder.typicode.com/todos/1", {});
-            console.log("DONE " + JSON.stringify(result.data))
+            const result = await axiosClient().get("https://jsonplaceholder.typicode.com/users", {});
             await new Promise(res => setTimeout(() => res(true), 1500));
-            return result.data;
+            // Note: Would handle network typings in a better way
+            return result.data as {
+                name: string;
+                email: string;
+                address: {
+                    street?: string;
+                    suite?: string;
+                    city?: string;
+                    zipcode?: string;
+                    geo?: {
+                        lat: number;
+                        lng: number;
+                    };
+                };
+                phone: string;
+                website: string;
+                company: {
+                    name: string;
+                    catchphrase: string;
+                    bs: string;
+                };
+            }[];
         }
     })
+
+    console.log(exampleQuery.isError + " " + exampleQuery.data)
 
     return (
         <ParallaxScrollView
             headerBackgroundColor={{light: '#A1CEDC', dark: '#1D3D47'}}
             headerImage={
                 <Image
-                    source={require('@/assets/images/partial-react-logo.png')}
+                    source={"https://northernlifemagazine.co.uk/wp-content/uploads/bb-plugin/cache/Skipton-8-landscape-b4f757e8377bd79fcfa6f906475908bf-bnfey68k2qgz.jpg"}
                     style={styles.reactLogo}
                 />
             }>
@@ -34,62 +55,26 @@ export default function HomeScreen() {
                 <ThemedText type="title">Welcome!</ThemedText>
                 <HelloWave/>
             </ThemedView>
-            <Button onPress={() => {
-            }}
-                    title={exampleQuery.isLoading ? "Loading" : exampleQuery?.data ? JSON.stringify(exampleQuery.data) : "No data"}/>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-                <ThemedText>
-                    Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-                    Press{' '}
-                    <ThemedText type="defaultSemiBold">
-                        {Platform.select({
-                            ios: 'cmd + d',
-                            android: 'cmd + m',
-                            web: 'F12',
-                        })}
-                    </ThemedText>{' '}
-                    to open developer tools.
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <Link href="/modal">
-                    <Link.Trigger>
-                        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-                    </Link.Trigger>
-                    <Link.Preview/>
-                    <Link.Menu>
-                        <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')}/>
-                        <Link.MenuAction
-                            title="Share"
-                            icon="square.and.arrow.up"
-                            onPress={() => alert('Share pressed')}
-                        />
-                        <Link.Menu title="More" icon="ellipsis">
-                            <Link.MenuAction
-                                title="Delete"
-                                icon="trash"
-                                destructive
-                                onPress={() => alert('Delete pressed')}
-                            />
-                        </Link.Menu>
-                    </Link.Menu>
-                </Link>
+            <Text style={{
+                fontSize: 24,
+                fontWeight: 'bold',
+                textDecorationLine: 'underline',
+                textDecorationColor: '#0062a8',
+                textDecorationStyle: 'solid',
+            }}>Users</Text>
+            {/*<Button onPress={() => {*/}
+            {/*}}*/}
+            {/*        title={exampleQuery.isLoading ? "Loading" : exampleQuery?.data ? JSON.stringify(exampleQuery.data[0]) : "No data"}/>*/}
 
-                <ThemedText>
-                    {`Tap the Explore tab to learn more about what's included in this starter app.`}
-                </ThemedText>
-            </ThemedView>
-            <ThemedView style={styles.stepContainer}>
-                <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-                <ThemedText>
-                    {`When you're ready, run `}
-                    <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-                    <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-                    <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-                    <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-                </ThemedText>
-            </ThemedView>
+            {exampleQuery.isError || exampleQuery.data === undefined ? <>
+                    <Text>Handle error</Text>
+                </> :
+                exampleQuery.data.map(user => {
+                    return <UserCard name={user.name} email={user.email}
+                                     address={user.address} phoneNumber={user.phone}
+                                     website={user.website} company={user.company}/>
+                })
+            }
         </ParallaxScrollView>
     );
 }
@@ -105,8 +90,8 @@ const styles = StyleSheet.create({
         marginBottom: 8,
     },
     reactLogo: {
-        height: 178,
-        width: 290,
+        height: "100%",
+        width: "100%",
         bottom: 0,
         left: 0,
         position: 'absolute',

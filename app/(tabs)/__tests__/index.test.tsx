@@ -69,4 +69,19 @@ describe("Screen: HomeScreen", () => {
 
         await findByText(/Some/u, undefined, {timeout: 3000})
     })
+
+    it.only("Should handle error state for user query", async () => {
+        clientSpy.mockImplementation(() => {
+            return {
+                get: () => {
+                    return Promise.reject(new Error("Network error"))
+                }
+            } as unknown as AxiosInstance
+        })
+        const {getByText, findByText} = renderHomeScreen()
+
+        getByText("Loading");
+
+        await findByText(/Handle error/u, undefined, {timeout: 3000})
+    })
 })

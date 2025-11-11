@@ -21,7 +21,7 @@ interface Company {
     bs: string;
 }
 
-interface UserCardProps {
+export interface UserCardProps {
     name: string;
     email: string;
     address: Address;
