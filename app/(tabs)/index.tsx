@@ -8,37 +8,10 @@ import {ThemedView} from '@/components/themed-view';
 import {useQuery} from "@tanstack/react-query";
 import {axiosClient} from '@/constants/axiosClient';
 import {UserCard} from "@/components/ui/UserCard";
+import {useUsersQuery} from "@/hooks/useUsersQuery";
 
 export default function HomeScreen() {
-    const exampleQuery = useQuery({
-        queryKey: ["example"], queryFn: async _ => {
-
-            const result = await axiosClient().get("https://jsonplaceholder.typicode.com/users", {});
-            await new Promise(res => setTimeout(() => res(true), 1500));
-            // Note: Would handle network typings in a better way
-            return result.data as {
-                name: string;
-                email: string;
-                address: {
-                    street?: string;
-                    suite?: string;
-                    city?: string;
-                    zipcode?: string;
-                    geo?: {
-                        lat: number;
-                        lng: number;
-                    };
-                };
-                phone: string;
-                website: string;
-                company: {
-                    name: string;
-                    catchphrase: string;
-                    bs: string;
-                };
-            }[];
-        }
-    })
+    const exampleQuery = useUsersQuery();
 
     console.log(exampleQuery.isError + " " + exampleQuery.data)
 
@@ -66,14 +39,15 @@ export default function HomeScreen() {
             {/*}}*/}
             {/*        title={exampleQuery.isLoading ? "Loading" : exampleQuery?.data ? JSON.stringify(exampleQuery.data[0]) : "No data"}/>*/}
 
-            {exampleQuery.isError || exampleQuery.data === undefined ? <>
-                    <Text>Handle error</Text>
-                </> :
-                exampleQuery.data.map(user => {
-                    return <UserCard name={user.name} email={user.email}
-                                     address={user.address} phoneNumber={user.phone}
-                                     website={user.website} company={user.company}/>
-                })
+            {exampleQuery.isLoading ? <Text>Loading</Text> :
+                exampleQuery.isError || exampleQuery.data === undefined ? <>
+                        <Text>Handle error</Text>
+                    </> :
+                    exampleQuery.data.map(user => {
+                        return <UserCard name={user.name} email={user.email}
+                                         address={user.address} phoneNumber={user.phone}
+                                         website={user.website} company={user.company}/>
+                    })
             }
         </ParallaxScrollView>
     );

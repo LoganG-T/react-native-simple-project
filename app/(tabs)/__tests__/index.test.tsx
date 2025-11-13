@@ -1,7 +1,6 @@
 import HomeScreen from '@/app/(tabs)'
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
-import {act, renderRouter} from "expo-router/testing-library";
-import {beforeEach} from "node:test";
+import {renderRouter} from "expo-router/testing-library";
 import * as axiosClient from "@/constants/axiosClient";
 import {AxiosInstance} from "axios";
 
@@ -34,26 +33,6 @@ describe("Screen: HomeScreen", () => {
                 }
             } as unknown as AxiosInstance
         })
-    })
-
-    beforeEach(() => {
-        console.log("Before each")
-        //
-        // axiosClient.axiosClient.mockImplementation(() => {
-        //     console.log("Create call")
-        //     return () => ({
-        //         get: () => {
-        //             return Promise.resolve({data: {"Some": "Data"}})
-        //         }
-        //     })
-        // })
-    })
-
-    it("should", async () => {
-        const x = axiosClient.axiosClient();
-        console.log(JSON.stringify(x))
-        await x.get('foo')
-        expect(clientSpy).toHaveBeenCalledTimes(1);
     })
 
     it("Should render the welcome text", () => {
