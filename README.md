@@ -1,8 +1,11 @@
-# Welcome to your Expo app 👋
+# Description
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+An example react native expo app that displays data from `jsonplaceholder` and includes unit tests using jest and react-native testing library.
 
 ## Get started
+
+Ensure you have following the react-native documentation on getting your environment setup to run a react-native project.
+[environment-setup](https://reactnative.dev/docs/environment-setup) and [set-up-your-environment](https://reactnative.dev/docs/set-up-your-environment)
 
 1. Install dependencies
 
@@ -35,16 +38,18 @@ npm run reset-project
 
 This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
+## Features
 
-To learn more about developing your project with Expo, look at the following resources:
+HomeScreen:
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Display two buttons to display two views, `Users` and `Posts`.
+- Selecting `Users` will display a list of users using user cards in a scroll view on the screen.
+- Selecting `Posts` will display a list of posts from users using post cards in a scroll view on the screen without navigating away from the screen.
+- Pressing a post card will display the post card and all comments related to that post card on the screen without navigating away from the screen.
 
-## Join the community
+## Useful commands
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+`npm run test:unit` - To run all available unit tests
+`npm run lint` - To run linting against available files
+`npm run android` - To quick run an android build on a local emulator
+`npm run ios` - To quick run an ios build on a local simulator
