@@ -8,10 +8,10 @@ import { Text, View } from "react-native";
 export const PostComments: FC<{ post?: postsQueryType; username?: string }> = ({ post, username }) => {
   const { data, isLoading, isError } = usePostCommentsQuery(post?.id);
   if (isLoading) {
-    return <Text>Is loading</Text>;
+    return <Text>Display loading component</Text>;
   }
   if (isError) {
-    return <Text>Is error</Text>;
+    return <Text>Display error layout</Text>;
   }
   if (post?.id !== undefined && data !== undefined) {
     return (

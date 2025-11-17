@@ -7,6 +7,12 @@ An example react native expo app that displays data from `jsonplaceholder` and i
 Ensure you have following the react-native documentation on getting your environment setup to run a react-native project.
 [environment-setup](https://reactnative.dev/docs/environment-setup) and [set-up-your-environment](https://reactnative.dev/docs/set-up-your-environment)
 
+0. Clone the repository
+
+   ```
+   git clone https://github.com/LoganG-T/react-native-simple-project.git
+   ```
+
 1. Install dependencies
 
    ```bash
@@ -28,16 +34,6 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
 ## Features
 
 HomeScreen:
@@ -49,7 +45,10 @@ HomeScreen:
 
 ## Useful commands
 
-`npm run test:unit` - To run all available unit tests
-`npm run lint` - To run linting against available files
-`npm run android` - To quick run an android build on a local emulator
-`npm run ios` - To quick run an ios build on a local simulator
+- `npm run test:unit` - To run all available unit tests
+- `npm run lint` - To run linting against available files
+- `npm run ts` - To run TypeScript checks against available files
+- `npm run android` - To quick run an android build on a local emulator
+- `npm run ios` - To quick run an ios build on a local simulator
+
+Note: ios may require manually adding the expo url when starting expo through the terminal to run on a simulator.

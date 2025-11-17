@@ -30,7 +30,7 @@ export interface UserCardProps {
   company: Company;
 }
 
-// Note: Accessibility - large card not split by grouping.
+// Note: Accessibility - not looked into supporting large font through component designs
 
 export const UserCard: FC<UserCardProps> = ({ name, email, address, phoneNumber, website, company }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -40,6 +40,8 @@ export const UserCard: FC<UserCardProps> = ({ name, email, address, phoneNumber,
       onPress={() => {
         setCollapsed(!collapsed);
       }}
+      accessibilityState={{ expanded: !collapsed }}
+      accessibilityHint={collapsed ? "Press to open" : "Press to close"}
     >
       <View>
         <Text>{name}</Text>
@@ -52,7 +54,7 @@ export const UserCard: FC<UserCardProps> = ({ name, email, address, phoneNumber,
           <></>
         ) : (
           <>
-            <View style={{ padding: 4 }}>
+            <View style={{ padding: 4 }} accessible>
               <View style={{ flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
                 <Text>Email:</Text>
                 <Text>{email}</Text>
@@ -79,6 +81,7 @@ export const UserCard: FC<UserCardProps> = ({ name, email, address, phoneNumber,
                 marginTop: 8,
                 padding: 4,
               }}
+              accessible
             >
               <View style={{ flexDirection: "row", justifyContent: "space-between", width: "100%" }}>
                 <Text>Address:</Text>

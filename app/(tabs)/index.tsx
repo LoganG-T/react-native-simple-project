@@ -67,7 +67,7 @@ export default function HomeScreen() {
 
       {selectedDisplayContent === DisplayContent.Users ? (
         exampleQuery.isLoading ? (
-          <Text>Loading</Text>
+          <Text>Display loading component</Text>
         ) : exampleQuery.isError || exampleQuery.data === undefined ? (
           <>
             <Text>Handle error</Text>
@@ -93,7 +93,7 @@ export default function HomeScreen() {
 
       {selectedDisplayContent === DisplayContent.Posts ? (
         postIsLoading ? (
-          <Text>Loading</Text>
+          <Text>Display loading component</Text>
         ) : postIsError || postData === undefined ? (
           <>
             <Text>Handle error</Text>

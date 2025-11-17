@@ -83,7 +83,7 @@ describe("Screen: HomeScreen", () => {
   it("Should wait for network call", async () => {
     const { getByText, findByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
 
     await findByText(/Leanne Graham/u, undefined, { timeout: 3000 });
   });
@@ -91,7 +91,7 @@ describe("Screen: HomeScreen", () => {
   it("Should render the users button", async () => {
     const { getByText, findByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
     await findByText(/Leanne Graham/u, undefined, { timeout: 3000 });
 
     getByText("Users");
@@ -100,7 +100,7 @@ describe("Screen: HomeScreen", () => {
   it("Should render the posts button", async () => {
     const { getByText, findByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
     await findByText(/Leanne Graham/u, undefined, { timeout: 3000 });
 
     getByText("Posts");
@@ -109,7 +109,7 @@ describe("Screen: HomeScreen", () => {
   it("Should display the user details after pressing a user card", async () => {
     const { getByText, findByText, queryByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
     await findByText(/Leanne Graham/u, undefined, { timeout: 3000 });
     expect(queryByText("Sincere@april.biz")).toBeNull();
 
@@ -123,7 +123,7 @@ describe("Screen: HomeScreen", () => {
   it("Should display the posts after pressing the posts button", async () => {
     const { getByText, findByText, queryByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
     await findByText(/Leanne Graham/u, undefined, { timeout: 3000 });
     getByText(/Romaguera-Crona/u);
     expect(queryByText(/sunt aut facere repellat/u)).toBeNull();
@@ -146,7 +146,7 @@ describe("Screen: HomeScreen", () => {
     });
     const { getByText, findByText } = renderHomeScreen();
 
-    getByText("Loading");
+    getByText("Display loading component");
 
     await findByText(/Handle error/u, undefined, { timeout: 3000 });
   });

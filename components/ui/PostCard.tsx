@@ -11,7 +11,7 @@ export interface PostCardProps {
 
 export const PostCard: FC<PostCardProps> = ({ title, body, displayName, onPress }) => {
   return (
-    <Card onPress={onPress}>
+    <Card onPress={onPress} accessibilityHint="Press to navigate to post comments">
       <View>
         <View>
           <Text style={styles.title}>{title}</Text>
