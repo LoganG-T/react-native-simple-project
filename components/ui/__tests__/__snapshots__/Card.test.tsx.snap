@@ -2,6 +2,35 @@
 
 exports[`Component: Card Should match snapshot styles 1`] = `
 <View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
   style={
     {
       "margin": 10,
@@ -14,6 +43,7 @@ exports[`Component: Card Should match snapshot styles 1`] = `
         "backgroundColor": "#fff",
         "borderColor": "#6a6c8380",
         "borderRadius": 25,
+        "borderWidth": 1,
         "elevation": 6,
         "padding": 25,
         "shadowColor": "#00000054",

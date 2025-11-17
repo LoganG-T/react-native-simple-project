@@ -9,8 +9,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "test:unit": "echo 'TODO'",
-    "test:component": "jest",
+    "test:unit": "jest",
     "test": "jest --watchAll"
   },
   "dependencies": {
