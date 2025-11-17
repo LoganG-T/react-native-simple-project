@@ -1,14 +1,14 @@
 import { Colors } from "@/constants/theme";
 import { useThemeColor } from "@/hooks/use-theme-color";
 import { FC, ReactElement } from "react";
-import { Pressable, View, ViewStyle } from "react-native";
+import { Pressable, View, ViewProps, ViewStyle } from "react-native";
 
-interface CardProps {
+interface CardProps extends ViewProps {
   onPress?: () => void;
   children: ReactElement;
 }
 
-export const Card: FC<CardProps> = ({ onPress, children }) => {
+export const Card: FC<CardProps> = ({ onPress, accessibilityHint, children, ...rest }) => {
   const backgroundColour = useThemeColor(
     {
       light: Colors.light.background,
@@ -18,7 +18,7 @@ export const Card: FC<CardProps> = ({ onPress, children }) => {
   );
 
   return (
-    <Pressable style={{ margin: 10 }} onPress={onPress}>
+    <Pressable style={{ margin: 10 }} onPress={onPress} accessibilityHint={accessibilityHint} {...rest}>
       <View style={{ backgroundColor: backgroundColour, ...styles }}>{children}</View>
     </Pressable>
   );

@@ -9,7 +9,7 @@ import { ReactElement } from "react";
 jest.mock("@/constants/axiosClient");
 
 // Note: Update general network testing through axios to handle scenarios better - could use a library like `msw`
-// Note: Refactor tests to remove duplication. Resolve children typed as any error
+// Note: Refactor tests to remove duplication
 // Note: Mock setTimeout so tests don't take real time
 
 const wrapper = ({ children }: { children: ReactElement }) => {

@@ -42,7 +42,5 @@ const styles = StyleSheet.create({
   },
   primaryButtonUnderline: {
     ...SharedStyles.buttonTextUnderline,
-    top: 10,
-    left: 16,
   },
 });

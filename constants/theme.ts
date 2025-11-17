@@ -63,8 +63,8 @@ export const SharedStyles = StyleSheet.create({
     textAlign: "center",
   },
   buttonTextUnderline: {
-    position: "absolute",
     fontSize: 24,
+    textAlign: "center",
     textDecorationLine: "underline",
     color: "#f0fafa",
     textDecorationColor: "#f0fafa",
